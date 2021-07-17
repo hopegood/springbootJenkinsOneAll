@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+        <relativePath/>
+   </parent>   
+  <artifactId>springbootJenkinsOneAll</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ <dependencies>
+  <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-security</artifactId>
+          </dependency>
+          <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>  
+    
+      <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-devtools</artifactId>
+   <optional>true</optional>
+</dependency>
+<dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+<groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.1.46.sec06</version>
+</dependency>
+<dependency>
+
+ 
+<groupId>org.apache.commons</groupId>
+ 
+<artifactId>commons-lang3</artifactId>
+ 
+<version>3.3.2</version>
+</dependency>
+  </dependencies>  
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+           <includeSystemScope>true</includeSystemScope>
+             </configuration>
+			</plugin>
+			
+			<plugin> 
+        <groupId>org.apache.maven.plugins</groupId> 
+        <artifactId>maven-surefire-plugin</artifactId> 
+        <configuration> 
+          <skip>true</skip> 
+        </configuration> 
+      </plugin>
+      
+      <plugin>
+   <!--新增的docker maven插件-->
+   <groupId>com.spotify</groupId>
+   <artifactId>docker-maven-plugin</artifactId>
+   <version>0.4.13</version>
+   <configuration>
+    <!--镜像名字-->
+    <!-- <imageName>${docker.image.prefix}/${project.artifactId}</imageName> -->
+    <imageName>sqx.app</imageName>
+     <!-- <baseImage>java</baseImage>
+      <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint> -->
+     <!--DokcerFile文件地址-->
+    <dockerDirectory>src/main/docker</dockerDirectory>
+    <!--指定pem证书文件路径地址 -->
+	<dockerCertPath>src/main/pem</dockerCertPath>
+    <!-- 远程docker容器的地址 -->
+    <dockerHost>https://106.14.39.229:9375</dockerHost>
+    <resources>
+     <resource>
+      <targetPath>/</targetPath>
+      <directory>${project.build.directory}</directory>
+      <include>${project.build.finalName}.jar</include>
+     </resource>
+    </resources>
+   </configuration>
+   
+   <executions>
+                <execution>
+                    <id>build-image</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>build</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>tag-image</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>tag</goal>
+                    </goals>
+                    <configuration>
+                        <image>sqx.app</image>
+                        <newName>localhost/library/sqx.app:${project.version}</newName>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>push-image</id>
+                    <phase>deploy</phase>
+                    <goals>
+                        <goal>push</goal>
+                    </goals>
+                    <configuration>
+                        <imageName>localhost/library/sqx.app:${project.version}</imageName>
+                    </configuration>
+                </execution>
+            </executions>
+            
+  </plugin>
+      
+		</plugins>
+	</build>
+  
+</project>
