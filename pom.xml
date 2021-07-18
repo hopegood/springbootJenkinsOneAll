@@ -107,7 +107,7 @@
                     </goals>
                     <configuration>
                         <image>sqx.app</image>
-                        <newName>localhost/library/sqx.app:${project.version}</newName>
+                        <newName>localhost/library/springbootJenkinsOneAll.app:${project.version}</newName>
                     </configuration>
                 </execution>
                 <execution>
