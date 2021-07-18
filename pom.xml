@@ -106,7 +106,7 @@
                         <goal>tag</goal>
                     </goals>
                     <configuration>
-                        <image>sqx.app</image>
+                        <image>springbootJenkinsOneAll.app</image>
                         <newName>localhost/library/springbootJenkinsOneAll.app:${project.version}</newName>
                     </configuration>
                 </execution>
