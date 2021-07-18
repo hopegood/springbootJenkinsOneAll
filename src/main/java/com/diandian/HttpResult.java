@@ -1,7 +1,7 @@
 package com.diandian;
 
 /**
- * HTTP结果封装
+ * HTTP结果封装dd
  * @author sunqixing
  *
  */
