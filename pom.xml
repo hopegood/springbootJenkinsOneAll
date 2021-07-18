@@ -73,7 +73,7 @@
    <configuration>
     <!--镜像名字-->
     <!-- <imageName>${docker.image.prefix}/${project.artifactId}</imageName> -->
-    <imageName>sqx.app</imageName>
+    <imageName>springbootJenkinsOneAll.app</imageName>
      <!-- <baseImage>java</baseImage>
       <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint> -->
      <!--DokcerFile文件地址-->
