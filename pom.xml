@@ -117,7 +117,7 @@
                         <goal>push</goal>
                     </goals>
                     <configuration>
-                        <imageName>localhost/library/sqx.app:${project.version}</imageName>
+                        <imageName>localhost/library/springbootJenkinsOneAll.app:${project.version}</imageName>
                     </configuration>
                 </execution>
             </executions>
