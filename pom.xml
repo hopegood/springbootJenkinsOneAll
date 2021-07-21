@@ -107,7 +107,7 @@
                     </goals>
                     <configuration>
                         <image>springbootjenkinsoneall.app</image>
-                        <newName>localhost/library/springbootjenkinsoneall.app:${project.version}</newName>
+                        <newName>106.14.39.229/library/springbootjenkinsoneall.app:${project.version}</newName>
                     </configuration>
                 </execution>
                 <execution>
@@ -117,7 +117,7 @@
                         <goal>push</goal>
                     </goals>
                     <configuration>
-                        <imageName>localhost/library/springbootjenkinsoneall.app:${project.version}</imageName>
+                        <imageName>106.14.39.229/library/springbootjenkinsoneall.app:${project.version}</imageName>
                     </configuration>
                 </execution>
             </executions>
